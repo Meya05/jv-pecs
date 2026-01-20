@@ -1,20 +1,23 @@
 package core.mate.academy.service;
 
-import core.mate.academy.model.*;
-
-import java.util.ArrayList;
+import core.mate.academy.model.Bulldozer;
+import core.mate.academy.model.Excavator;
+import core.mate.academy.model.Machine;
+import core.mate.academy.model.Truck;
 import java.util.List;
 
-public class MachineServiceImpl<T extends Machine> implements MachineService<T> {
+public class MachineServiceImpl<T extends Machine>
+        implements MachineService<T> {
 
-    private final BulldozerProducer bulldozerProducer = new BulldozerProducer();
-    private final ExcavatorProducer excavatorProducer = new ExcavatorProducer();
-    private final TruckProducer truckProducer = new TruckProducer();
+    private final MachineProducer<Bulldozer> bulldozerProducer =
+            new BulldozerProducer();
+    private final MachineProducer<Excavator> excavatorProducer =
+            new ExcavatorProducer();
+    private final MachineProducer<Truck> truckProducer =
+            new TruckProducer();
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<? extends T> getAll(Class<? extends T> type) {
-
         if (type == Bulldozer.class) {
             return (List<? extends T>) bulldozerProducer.get();
         }
@@ -24,7 +27,7 @@ public class MachineServiceImpl<T extends Machine> implements MachineService<T> 
         if (type == Truck.class) {
             return (List<? extends T>) truckProducer.get();
         }
-        return new ArrayList<>();
+        throw new RuntimeException("Unsupported machine type");
     }
 
     @Override
