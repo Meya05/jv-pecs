@@ -1,10 +1,16 @@
 package core.mate.academy.model;
 
-public abstract class Machine implements Workable {
-    protected String model;
+public abstract class Machine {
 
-    public Machine(String model) {
+    private final String model;
+
+    protected Machine(String model) {
         this.model = model;
     }
-}
 
+    public String getModel() {
+        return model;
+    }
+
+    public abstract void doWork();
+}

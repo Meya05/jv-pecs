@@ -2,21 +2,16 @@ package core.mate.academy.model;
 
 public class Truck extends Machine {
 
-    private int loadCapacity;
+    private final int loadCapacity;
 
-    public Truck() {
-    }
-
-    public int getLoadCapacity() {
-        return loadCapacity;
-    }
-
-    public void setLoadCapacity(int loadCapacity) {
+    public Truck(String model, int loadCapacity) {
+        super(model);
         this.loadCapacity = loadCapacity;
     }
 
     @Override
     public void doWork() {
-        System.out.println("Truck started to work");
+        System.out.println("Truck " + getModel()
+                + " transports load " + loadCapacity);
     }
 }

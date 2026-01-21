@@ -8,8 +8,8 @@ public class TruckProducer implements MachineProducer<Truck> {
     @Override
     public List<Truck> get() {
         return List.of(
-                new Truck("MAN", 10),
-                new Truck("Scania", 12)
+                new Truck("MAN TGX", 20),
+                new Truck("Volvo FH", 25)
         );
     }
 }

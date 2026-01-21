@@ -8,8 +8,8 @@ public class ExcavatorProducer implements MachineProducer<Excavator> {
     @Override
     public List<Excavator> get() {
         return List.of(
-                new Excavator("Volvo", 500),
-                new Excavator("Hitachi", 450)
+                new Excavator("Hitachi EX200", 3),
+                new Excavator("Volvo EC220", 4)
         );
     }
 }

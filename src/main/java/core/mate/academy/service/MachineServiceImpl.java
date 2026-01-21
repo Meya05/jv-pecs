@@ -1,33 +1,25 @@
 package core.mate.academy.service;
 
-import core.mate.academy.model.Bulldozer;
-import core.mate.academy.model.Excavator;
-import core.mate.academy.model.Machine;
-import core.mate.academy.model.Truck;
+import core.mate.academy.model.*;
 import java.util.List;
 
 public class MachineServiceImpl<T extends Machine>
         implements MachineService<T> {
 
-    private final MachineProducer<Bulldozer> bulldozerProducer =
-            new BulldozerProducer();
-    private final MachineProducer<Excavator> excavatorProducer =
-            new ExcavatorProducer();
-    private final MachineProducer<Truck> truckProducer =
-            new TruckProducer();
-
     @Override
+    @SuppressWarnings("unchecked")
     public List<? extends T> getAll(Class<? extends T> type) {
+
         if (type == Bulldozer.class) {
-            return (List<? extends T>) bulldozerProducer.get();
+            return (List<? extends T>) new BulldozerProducer().get();
         }
         if (type == Excavator.class) {
-            return (List<? extends T>) excavatorProducer.get();
+            return (List<? extends T>) new ExcavatorProducer().get();
         }
         if (type == Truck.class) {
-            return (List<? extends T>) truckProducer.get();
+            return (List<? extends T>) new TruckProducer().get();
         }
-        throw new RuntimeException("Unsupported machine type");
+        throw new IllegalArgumentException("Unsupported machine type");
     }
 
     @Override
@@ -38,8 +30,8 @@ public class MachineServiceImpl<T extends Machine>
     }
 
     @Override
-    public void startWorking(List<? extends T> machines) {
-        for (T machine : machines) {
+    public void startWorking(List<? extends Machine> machines) {
+        for (Machine machine : machines) {
             machine.doWork();
         }
     }
